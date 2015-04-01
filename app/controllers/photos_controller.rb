@@ -2,8 +2,10 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!
   
   def index
-  	@ photos = current_user.photos
+  	@photos = current_user.photos
   end
+
+
 
   def new
   	@photo = Photo.new
@@ -23,13 +25,13 @@ class PhotosController < ApplicationController
   def edit
   	@photo = current_user.photos.find(params[:id])
   end
-
+  
   def update
   	@photo = current_user.photos.find(params[:id])
 
   	if @photo.update_attributes(photo_params)
   		redirect_to photos_path
-  	else
+  	elsegit add 
   		render :edit
   	end
   end
