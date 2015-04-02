@@ -5,13 +5,26 @@ class PhotosTable < TableCloth::Base
 
   column :caption
 
-  actions do
-    action do |photo|
+  actions separator: ' - ' do 
+    actions do |photo|
       link_to 'Edit Photo', edit_photo_path(photo)
+    end
+
+ 
+    action do |photo|
+      link_to 'Add Comment', new_photo_comment_path(photo)
+    end
+
+     action do |photo|
+      if photo.comments.any?
+      link_to 'View All Comments', photo_comments_path(photo)
+    end
     end
   end
 
   config.table.class = "table table-bordered"
+
+
   # Define columns with the #column method
   # column :name, :email
 
